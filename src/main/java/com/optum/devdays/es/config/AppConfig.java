@@ -34,11 +34,19 @@ public class AppConfig {
 
     private final String hostsString;
 
+    @Value("${elasticsearch.index}")
+    private String indexName;
+
     private final Integer port;
     private final String keystoreLocation;
     private final String keystorePassword;
     private final String truststoreLocation;
     private final String truststorePassword;
+
+    @Bean
+    public String indexName(){
+        return indexName;
+    }
 
     public AppConfig(@Value("${elastic.host}") String hostsString,
                      @Value("${elastic.port}") Integer port,
