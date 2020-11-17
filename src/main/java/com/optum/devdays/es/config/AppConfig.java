@@ -37,6 +37,9 @@ public class AppConfig {
     @Value("${elasticsearch.index}")
     private String indexName;
 
+
+    private RestHighLevelClient client;
+
     private final Integer port;
     private final String keystoreLocation;
     private final String keystorePassword;
@@ -46,6 +49,11 @@ public class AppConfig {
     @Bean
     public String indexName(){
         return indexName;
+    }
+
+    @Bean
+    public RestHighLevelClient client() throws NoSuchAlgorithmException, KeyManagementException {
+        return restHighLevelClient();
     }
 
     public AppConfig(@Value("${elastic.host}") String hostsString,
